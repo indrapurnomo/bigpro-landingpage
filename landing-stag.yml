@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: landing-service
-  namespace: production
+  namespace: staging
 spec:
   ports:
   - port: 80
@@ -15,7 +15,7 @@ apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
   name: landing-deployment
-  namespace: production
+  namespace: staging
   
 spec:
   selector:
@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
       - name: landing
-        image: indradock/landingpage-app:production_versi
+        image: indradock/landingpage-app:staging_versi
         ports:
         - containerPort: 80
         imagePullPolicy: "Always"
@@ -38,12 +38,12 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: landing-ingress
-  namespace: production
+  namespace: staging
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: landingpage.indraku.online
+  - host: landingpagestaging.indraku.online
     http:
       paths:
       #- path: /
