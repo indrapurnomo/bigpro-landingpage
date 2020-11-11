@@ -46,7 +46,7 @@ pipeline {
          //   }
          // }  
       //  }
-      }
+     // }
       stage('Deploy TO K8S'){
         steps{
           script {
