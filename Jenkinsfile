@@ -2,9 +2,10 @@ env.DOCKER_REGISTRY = 'indradock'
 env.DOCKER_IMAGE_NAME = 'landingpage-app'
 pipeline {
     agent any
-    triggers {
-        pollSCM(env.GIT_BRANCH == 'main' ? '* * * * *': '')
-    }
+#    triggers {
+ #       pollSCM(env.GIT_BRANCH == 'main' ? '* * * * *': '')
+  #  }
+    triggers { pollSCM '* * * * *' }
     stages {
         stage('versi') {
             steps {
