@@ -4,6 +4,15 @@
 
 #COPY . .
 
-FROM nginx
+#FROM nginx
 
-COPY . /usr/share/nginx/html/
+#COPY . /usr/share/nginx/html/
+FROM richarvey/nginx-php-fpm
+
+WORKDIR /var/www/html
+
+COPY . . 
+
+EXPOSE 443 80
+
+CMD ["/start.sh"]
