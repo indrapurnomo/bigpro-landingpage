@@ -23,12 +23,12 @@ pipeline {
             if ( env.GIT_BRANCH == 'staging' ){
               sh "docker image build . -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:staging_${BUILD_NUMBER}"
               sh "docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:staging_${BUILD_NUMBER}"
-              echo "Docker Image ${BUILD_NUMBER} Build For Server Stagging ${currentBuild.currentResult}"
+              //echo "Docker Image ${BUILD_NUMBER} Build For Server Stagging ${currentBuild.currentResult}"
             }  
             else if ( env.GIT_BRANCH == 'main' ){
               sh "docker image build . -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:production_${BUILD_NUMBER}"
               sh "docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:production_${BUILD_NUMBER}"
-              echo "Docker Image ${BUILD_NUMBER} Build For Server Production ${currentBuild.currentResult}"
+              //echo "Docker Image ${BUILD_NUMBER} Build For Server Production ${currentBuild.currentResult}"
             }
           }  
         }
@@ -54,7 +54,7 @@ pipeline {
               //Change url wget
               sh 'https://raw.githubusercontent.com/indrapurnomo/bigpro-landingpage/main/landing-stag.yml'
               sh 'sed -i "s/versi/$BUILD_NUMBER/g" landing-stag.yaml'
-              sh 'kubectl apply -f landing.yaml'
+              sh 'kubectl apply -f landing-stag.yaml'
               sh 'rm -rf *'
               echo "Deploy ${BUILD_NUMBER} To Server Staging ${currentBuild.currentResult}"
             }
