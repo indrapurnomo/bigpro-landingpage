@@ -51,7 +51,7 @@ pipeline {
         steps{
           script {
             if ( env.GIT_BRANCH == 'staging' ){
-              #Change url wget
+              //Change url wget
               sh 'https://raw.githubusercontent.com/indrapurnomo/bigpro-landingpage/staging/landing-stag.yml'
               sh 'sed -i "s/versi/$BUILD_NUMBER/g" landing-stag.yaml'
               sh 'kubectl apply -f landing-stag.yaml'
@@ -59,7 +59,7 @@ pipeline {
               echo "Deploy ${BUILD_NUMBER} To Server Staging ${currentBuild.currentResult}"
             }
             else if ( env.GIT_BRANCH == 'main' ){
-              #Change url wget
+              //Change url wget
               sh 'https://github.com/indrapurnomo/bigpro-landingpage/blob/main/landing.yml'
               sh 'sed -i "s/versi/$BUILD_NUMBER/g" landing.yaml'
               sh 'kubectl apply -f landing.yaml'
