@@ -11,7 +11,7 @@ pipeline {
           sh "git --version"
           echo "Deployment TO ${env.GIT_BRANCH}"
           script {   env.DOCKER_REGISTRY = 'indradock'
-                     env.DOCKER_IMAGE_NAME = 'landingpage-app'
+                     env.DOCKER_IMAGE_NAME = 'landingpage-apps'
                      //Change env DOCKER_IMAGE_APPS
                      //env.DOCKER_IMAGE_APPS = 'landpage' 
           }
