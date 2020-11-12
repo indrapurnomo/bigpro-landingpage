@@ -43,7 +43,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: landingpagestaging.indraku.online
+  - host: landingpagestaging2.indraku.online
     http:
       paths:
       #- path: /
