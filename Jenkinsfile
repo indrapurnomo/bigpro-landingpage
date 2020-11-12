@@ -27,6 +27,7 @@ pipeline {
               echo "Docker Image ${BUILD_NUMBER} Build For Server Stagging ${currentBuild.currentResult}"
             }  
             else if ( env.GIT_BRANCH == 'main' ){
+              sh 'sed -i "s/versi/$BUILD_NUMBER/g" index.html'
               sh "docker image build . -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:production_${BUILD_NUMBER}"
               sh "docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:production_${BUILD_NUMBER}"
               echo "Docker Image ${BUILD_NUMBER} Build For Server Production ${currentBuild.currentResult}"
