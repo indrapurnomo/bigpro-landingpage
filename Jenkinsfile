@@ -33,20 +33,20 @@ pipeline {
           }  
         }
       }
-  //  stage('Docker Image Delete'){
-    //    steps{
-      //    script {
-        //    if ( env.GIT_BRANCH == 'staging' ){
-          //    sh "docker image rm -f $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:staging_${BUILD_NUMBER}"
-            //  echo "Docker Image ${BUILD_NUMBER} Delete For Server Stagging ${currentBuild.currentResult}"
-          //  }
-           // else if ( env.GIT_BRANCH == 'main' ){
-            //  sh "docker image rm -f $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:production_${BUILD_NUMBER}"
-             // echo "Docker Image ${BUILD_NUMBER} Delete For Server Production ${currentBuild.currentResult}"
-         //   }
-         // }  
-      //  }
-     // }
+    stage('Docker Image Delete'){
+        steps{
+          script {
+            if ( env.GIT_BRANCH == 'staging' ){
+              sh "docker image rm -f $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:staging_${BUILD_NUMBER}"
+              echo "Docker Image ${BUILD_NUMBER} Delete For Server Stagging ${currentBuild.currentResult}"
+            }
+            else if ( env.GIT_BRANCH == 'main' ){
+              sh "docker image rm -f $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:production_${BUILD_NUMBER}"
+              echo "Docker Image ${BUILD_NUMBER} Delete For Server Production ${currentBuild.currentResult}"
+            }
+          }  
+        }
+      }
       stage('Deploy TO K8S'){
         steps{
           script {
