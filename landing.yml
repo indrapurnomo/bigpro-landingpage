@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: landing-service
+  name: landing-service-ku
   namespace: production
 spec:
   ports:
@@ -14,7 +14,7 @@ spec:
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: landing-deployment
+  name: landing-deployment-ku
   namespace: production
   
 spec:
@@ -37,13 +37,13 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: landing-ingress
+  name: landing-ingress-ku
   namespace: production
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: landingpage.indraku.online
+  - host: landingpageku.indraku.online
     http:
       paths:
       #- path: /
