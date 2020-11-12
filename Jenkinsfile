@@ -52,7 +52,7 @@ pipeline {
           script {
             if ( env.GIT_BRANCH == 'staging' ){
               //Change url wget
-              sh 'https://raw.githubusercontent.com/indrapurnomo/bigpro-landingpage/main/landing-stag.yml'
+              sh 'https://raw.githubusercontent.com/indrapurnomo/bigpro-landingpage/staging/landing-stag.yml'
               sh 'sed -i "s/versi/$BUILD_NUMBER/g" landing-stag.yaml'
               sh 'kubectl apply -f landing-stag.yaml'
               sh 'rm -rf *'
