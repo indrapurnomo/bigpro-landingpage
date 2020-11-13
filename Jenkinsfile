@@ -12,8 +12,7 @@ pipeline {
           echo "Deployment TO ${env.GIT_BRANCH}"
           script {   env.DOCKER_REGISTRY = 'indradock'
                      env.DOCKER_IMAGE_NAME = 'landingpage-apps'
-                     //Change env DOCKER_IMAGE_APPS
-                     //env.DOCKER_IMAGE_APPS = 'landpage' 
+                    
           }
         }
       }
@@ -24,12 +23,12 @@ pipeline {
               sh 'sed -i "s/versi/$BUILD_NUMBER/g" index.html'
               sh "docker image build . -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:staging_${BUILD_NUMBER}"
               sh "docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:staging_${BUILD_NUMBER}"
-             // echo "Docker Image ${BUILD_NUMBER} Build For Server Stagging ${currentBuild.currentResult}"
+              echo "Docker Image ${BUILD_NUMBER} Build For Server Stagging ${currentBuild.currentResult}"
             }  
             else if ( env.GIT_BRANCH == 'main' ){
               sh "docker image build . -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:production_${BUILD_NUMBER}"
               sh "docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:production_${BUILD_NUMBER}"
-            //  echo "Docker Image ${BUILD_NUMBER} Build For Server Production ${currentBuild.currentResult}"
+              echo "Docker Image ${BUILD_NUMBER} Build For Server Production ${currentBuild.currentResult}"
             }
           }  
         }
@@ -71,20 +70,5 @@ pipeline {
         }
       }
     }
-//  post {
-  //      always {
-    //      script {
-      //      if ( env.GIT_BRANCH == 'staging' ){
-        //      echo "DEPLOY NUMBER ${BUILD_NUMBER} TO SERVER STAGING ${currentBuild.currentResult}"
-          //    slackSend message: "DEPLOY  NUMBER ${BUILD_NUMBER} TO SERVER STAGING ${currentBuild.currentResult}"
-
-          //  }
-       //     else if ( env.GIT_BRANCH == 'main' ){
-         //     echo "DEPLOY NUMBER ${BUILD_NUMBER} TO SERVER STAGING ${currentBuild.currentResult}"
-           //   slackSend message: "DEPLOY NUMBER ${BUILD_NUMBER} TO SERVER PRODUCTION ${currentBuild.currentResult}"
-   //         }
-    //      }  
-  //      }
-//  }  
 }
 
